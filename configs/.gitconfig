@@ -1,0 +1,16 @@
+[user]
+	name = alvinwang
+	email = alvinwang@msn.com
+[diff]
+	tool = meld
+[difftool]
+	prompt = false
+[merge]
+	keepBackup = false
+	tool = mymeld
+	conflictstyle = diff3
+[mergetool "mymeld"]
+        prompt = false
+	cmd = meld $LOCAL $BASE $REMOTE -o $MERGED --diff $BASE $LOCAL --diff $BASE $REMOTE --auto-merge
+[alias]
+	tree = log --oneline --decorate --graph
