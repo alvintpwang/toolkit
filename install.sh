@@ -11,7 +11,7 @@ usage()
   printf "This tool will install the toolkit.\n\n"
   printf " -h,  help (this page)\n"
   printf " -v,  verbose\n"
-  printf " -o,  overwrite files (default is hard link)\n"
+  printf " -o,  overwrite files (default is symbolic link)\n"
   exit 0;
 }
 
@@ -35,13 +35,31 @@ path=${fullpath%/*}
 
 if [ $overwrite ]
 then
-  #cp -f "${path}/configs/vimrc" "$HOME/.vimrc"
-  cp -f "${path}/configs/gitconfig" "$HOME/.gitconfig"
+  #cp -rfT "${path}/configs/vimrc" "$HOME/.vimrc"
+  rm -rf "$HOME/.gitconfig"
+  cp -rfT "${path}/configs/gitconfig" "$HOME/.gitconfig"
+
+  rm -rf "$HOME/script"
+  cp -rfT "${path}/script" "$HOME/script"
 else
-  printf "hello\n"
-  #ln -f "${path}/configs/vimrc" "$HOME/.vimrc"
-  ln -f "${path}/configs/gitconfig" "$HOME/.gitconfig"
+  #ln -fsT "${path}/configs/vimrc" "$HOME/.vimrc"
+  rm -rf "$HOME/.gitconfig"
+  ln -fsT "${path}/configs/gitconfig" "$HOME/.gitconfig"
+  
+  rm -rf "$HOME/script"
+  ln -fsT "${path}/script" "$HOME/script"
 fi
 
+
+# modify .bashrc init file to include the bashrc in toolkit
+if [ -f "$HOME/.bashrc" ]
+then
+  if ! grep -q "$HOME/script/bashrc" "$HOME/.bashrc"
+  then
+    printf "\n%s\n" ". $HOME/script/bashrc" >> "$HOME/.bashrc"
+  fi
+else
+  printf "\n%s\n" ". $HOME/script/bashrc.sh" > "$HOME/.bashrc"
+fi
 
 

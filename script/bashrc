@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# This script is to speed up the CLI navigation
 
+# $PATH
+PATH="$PATH:$HOME/script/"
+
+# This script is to speed up the CLI navigation
 alias d='dirs -v'  # Show directory stacks 
 alias b='pushd +1' # Go backward
 alias f='pushd -0' # Go forward
