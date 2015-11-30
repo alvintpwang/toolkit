@@ -1,4 +1,6 @@
 #!/bin/bash
+#DIR="${BASH_SOURCE%/*}"
+#source $DIR/
 
 # Default values
 verbose=0

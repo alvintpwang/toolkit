@@ -19,7 +19,7 @@ usage()
 
 
 # main
-optstring=hvu
+optstring=hvu:
 while getopts $optstring opt
 do
   case $opt in
@@ -39,8 +39,8 @@ fi
 # get all repositories
 # ex: "https://github.com/open-power/apss.git"
 packages=( `curl -q "https://api.github.com/users/$user/repos?per_page=1000" 2>/dev/null | grep  -o  "\"clone_url\".*\".*\"" | cut -b14-` )
-total_repos=$(#packages{@})
-[ $verbos -ge 1 ] && printf "%s\n" "${packages[@]}"
+total_repos=${#packages[@]}
+[ $verbose -ge 1 ] && printf "%s\n" "${packages[@]}"
 
 
 # create folder
@@ -59,9 +59,9 @@ do
   git clone $tmp
   if [ $? -eq 0 ]
   then
-    success_repos=$(( $(success_repos:=0}+1 ))
+    success_repos=$(( ${success_repos:=0}+1 ))
   fi
 done
 
-printf "\n\n%s\n" "Success/Total=$success_repos/total_repos"
+printf "\n\n%s\n" "Success/Total=${success_repos:=0}/$total_repos"
 
