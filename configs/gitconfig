@@ -14,6 +14,8 @@
 	cmd = meld $LOCAL $BASE $REMOTE -o $MERGED --diff $BASE $LOCAL --diff $BASE $REMOTE --auto-merge
 [alias]
 	tree = log --oneline --decorate --graph
+        simpletree = log --oneline --decorate --graph --simplify-by-decoration
 	filelist = diff-tree -r --name-only --no-commit-id
+
 [push]
 	default = matching
