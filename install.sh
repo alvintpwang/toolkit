@@ -35,14 +35,14 @@ path=${fullpath%/*}
 
 if [ $overwrite ]
 then
-  #cp -rfT "${path}/configs/vimrc" "$HOME/.vimrc"
+  cp -rfT "${path}/configs/vimrc" "$HOME/.vimrc"
   rm -rf "$HOME/.gitconfig"
   cp -rfT "${path}/configs/gitconfig" "$HOME/.gitconfig"
 
   rm -rf "$HOME/script"
   cp -rfT "${path}/script" "$HOME/script"
 else
-  #ln -fsT "${path}/configs/vimrc" "$HOME/.vimrc"
+  ln -fsT "${path}/configs/vimrc" "$HOME/.vimrc"
   rm -rf "$HOME/.gitconfig"
   ln -fsT "${path}/configs/gitconfig" "$HOME/.gitconfig"
   
