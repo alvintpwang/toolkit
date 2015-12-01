@@ -21,10 +21,28 @@ alias 8='pushd +8'
 alias 9='pushd +9'
 
 
-# Machines
-export P1="-H 192.168.1.50 -I lanplus -U ADMIN  -P admin"
-export P2="-H 192.168.1.52 -I lanplus -U ADMIN  -P admin"
-export F1="-H 192.168.0.50 -I lanplus -U ADMIN  -P admin"
+###########################################################
+# For OpenPOWER projects
+###########################################################
+alias sol='ipmitool -H $BMCIP -I lanplus -U ADMIN  -P admin sol deactivate;ipmitool -H $BMCIP -I lanplus -U ADMIN  -P admin sol activate'
+alias ipmi='ipmitool -H $BMCIP -I lanplus -U ADMIN  -P admin'
+alias bmc-console='ssh sysadmin@$BMCIP'
+alias host-console='ssh test@$OS_IP'
+
+#default is Palmetto1
+BMCIP=192.168.1.150
+OS_IP=192.168.1.151
+MACHINE_NAME=Palmetto1@Taipei
+
+# Select the machine, machine menu
+mm() 
+{
+  local item
+  item+=( "Palmetto1@Taipei:BMCIP=192.168.1.150;HOST_IP=192.168.1.151;MACHINE_NAME=Palmetto1@Taipei" )
+  item+=( "Palmetto2@Taipei:BMCIP=192.168.1.152;HOST_IP=192.168.1.153;MACHINE_NAME=Palmetto2@Taipei" )
+  menu "${item[@]}" "Quit:echo \$MACHINE_NAME\(BMC ip:$BMCIP\)" ## pass array to menu function
+}
+
 
 
 cd() #@ Change directory, storing new directory on DIRSTACK
