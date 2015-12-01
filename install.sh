@@ -59,7 +59,8 @@ then
     printf "\n%s\n" ". $HOME/script/bashrc" >> "$HOME/.bashrc"
   fi
 else
-  printf "\n%s\n" ". $HOME/script/bashrc.sh" > "$HOME/.bashrc"
+  printf "\n%s\n" ". $HOME/script/bashrc" > "$HOME/.bashrc"
+  chmod +x "$HOME/.bashrc"
 fi
 
 
