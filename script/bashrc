@@ -2,7 +2,7 @@
 
 
 # $PATH
-PATH="$PATH:$HOME/script/"
+export PATH="$PATH:$HOME/script/"
 
 # This script is to speed up the CLI navigation
 alias d='dirs -v'  # Show directory stacks 
@@ -19,6 +19,12 @@ alias 6='pushd +6'
 alias 7='pushd +7'
 alias 8='pushd +8'
 alias 9='pushd +9'
+
+
+# Machines
+export P1="-H 192.168.1.15 -I lanplus -U ADMIN  -P admin"
+export P2="-H 192.168.1.15 -I lanplus -U ADMIN  -P admin"
+export F1="-H 192.168.0.50 -I lanplus -U ADMIN  -P admin"
 
 
 cd() #@ Change directory, storing new directory on DIRSTACK
