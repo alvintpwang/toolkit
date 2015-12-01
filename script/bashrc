@@ -22,8 +22,8 @@ alias 9='pushd +9'
 
 
 # Machines
-export P1="-H 192.168.1.15 -I lanplus -U ADMIN  -P admin"
-export P2="-H 192.168.1.15 -I lanplus -U ADMIN  -P admin"
+export P1="-H 192.168.1.50 -I lanplus -U ADMIN  -P admin"
+export P2="-H 192.168.1.52 -I lanplus -U ADMIN  -P admin"
 export F1="-H 192.168.0.50 -I lanplus -U ADMIN  -P admin"
 
 
