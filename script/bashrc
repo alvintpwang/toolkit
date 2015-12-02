@@ -26,13 +26,13 @@ alias 9='pushd +9'
 ###########################################################
 alias sol='ipmitool -H $BMCIP -I lanplus -U ADMIN  -P admin sol deactivate;ipmitool -H $BMCIP -I lanplus -U ADMIN  -P admin sol activate'
 alias ipmi='ipmitool -H $BMCIP -I lanplus -U ADMIN  -P admin'
-alias bmc-console='ssh sysadmin@$BMCIP'
-alias host-console='ssh test@$OS_IP'
+alias bmc-console='sshpass -p superuser ssh sysadmin@$BMCIP'
+alias host-console='ssh test@$OSIP'
 
 #default is Palmetto1
-BMCIP=192.168.1.150
-OS_IP=192.168.1.151
-MACHINE_NAME=Palmetto1@Taipei
+export BMCIP=192.168.1.150
+export OSIP=192.168.1.151
+export MACHINE_NAME=Palmetto1@Taipei
 
 # Select the machine, machine menu
 mm() 
