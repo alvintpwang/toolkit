@@ -3,16 +3,19 @@
 #source $DIR/
 
 # Default values
-verbose=0
 program=${0##*/}
 
 usage()
 {
-  printf "Usage: %s [OPTIONS]... \n" $program
-  printf "This tool will install the toolkit.\n\n"
-  printf " -h,  help (this page)\n"
-  printf " -v,  verbose\n"
-  exit 0;
+
+echo "\
+Usage: $program [OPTIONS]...
+This tool will install the toolkit.
+
+ -h,  help (this page)
+ -v,  verbose
+"
+exit;
 }
 
 
@@ -27,5 +30,8 @@ do
     *) printf "Not supported option %s" $opt; exit 1 ;;
  esac
 done
+
+[ $verbose ] && printf "verbose is: %s\n" $verbose
+
 
 

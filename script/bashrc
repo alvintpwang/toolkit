@@ -27,7 +27,8 @@ alias 9='pushd +9'
 alias sol='ipmitool -H $BMCIP -I lanplus -U ADMIN  -P admin sol deactivate;ipmitool -H $BMCIP -I lanplus -U ADMIN  -P admin sol activate'
 alias ipmi='ipmitool -H $BMCIP -I lanplus -U ADMIN  -P admin'
 alias bmc-console='sshpass -p superuser ssh sysadmin@$BMCIP'
-alias host-console='ssh test@$OSIP'
+alias host-console='sshpass -p test1234 ssh  test@$OSIP'
+alias lcb-console='sshpass -p alvin ssh alvin@openpowerlcb'
 
 #default is Palmetto1
 export BMCIP=192.168.1.150
