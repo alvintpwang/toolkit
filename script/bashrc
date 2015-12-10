@@ -41,6 +41,7 @@ mm()
   local item
   item+=( "Palmetto1@Taipei:BMCIP=192.168.1.150;HOST_IP=192.168.1.151;MACHINE_NAME=Palmetto1@Taipei" )
   item+=( "Palmetto2@Taipei:BMCIP=192.168.1.152;HOST_IP=192.168.1.153;MACHINE_NAME=Palmetto2@Taipei" )
+  item+=( "Firestone@Shanghai:BMCIP=192.168.0.50;HOST_IP=192.168.1.153;Firestone@Shanghai" )
   menu "${item[@]}" "Quit:echo \$MACHINE_NAME\(BMC ip:$BMCIP\)" ## pass array to menu function
 }
 
