@@ -60,19 +60,29 @@ done
 mkdir -p $user
 cd $user
 
-
 # clone all repositories
 for repo in "${packages[@]}"
 do
-  # remove the quatation ("xxx" -> xxx)
+  # remove the quotation ("xxx" -> xxx)
   tmp=${repo#?};
   tmp=${tmp%?};
+  
+  # get the folder
+  folder=`echo $repo | grep -oE "(\w|\-)*\.git" | grep -oE "(\w|\-)*"`
 
-  printf "%s\n" "git clone $tmp"
-  git clone $tmp
-  if [ $? -eq 0 ]
-  then
-    success_repos=$(( ${success_repos:=0}+1 ))
+  # clone if reps doesn't exit
+  if [ ! -d "$folder" ]; then
+    printf "%s\n" "git clone $tmp"
+    git clone $tmp
+    if [ $? -eq 0 ]
+    then
+      success_repos=$(( ${success_repos:=0}+1 ))
+    fi
+  else #fetch the latest one
+    printf "%s\n" "git pull $folder"
+    cd $folder
+    git pull --rebase --force
+    cd ..
   fi
 done
 
