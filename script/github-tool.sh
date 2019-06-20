@@ -38,11 +38,26 @@ fi
 
 # get all repositories
 # ex: "https://github.com/open-power/apss.git"
-packages=( `curl -q "https://api.github.com/users/$user/repos?per_page=1000" 2>/dev/null | grep  -o  "\"clone_url\".*\".*\"" | cut -b14-` )
-total_repos=${#packages[@]}
+
+# get repo number
+#https://api.github.com/orgs/openbmc
+packages_number=`curl -q "https://api.github.com/orgs/$user" 2>/dev/null | grep  -o  "\"public_repos\": \d*" | cut -b17-`
+page=1;
+packages=()
+while [ "$packages_number" -gt 0 ]
+do
+  packages+=( `curl -q "https://api.github.com/users/$user/repos?page=$page&per_page=100" 2>/dev/null | grep  -o  "\"clone_url\".*\".*\"" | cut -b14-` )
+ 
+  page=$((page+1))
+  packages_number=$((packages_number-100))
+done
+
+
 [ $verbose -ge 1 ] && printf "%s\n" "${packages[@]}"
 
 
+
+exit 0
 # create folder
 mkdir -p $user
 cd $user
