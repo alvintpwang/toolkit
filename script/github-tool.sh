@@ -56,8 +56,6 @@ done
 [ $verbose -ge 1 ] && printf "%s\n" "${packages[@]}"
 
 
-
-exit 0
 # create folder
 mkdir -p $user
 cd $user
